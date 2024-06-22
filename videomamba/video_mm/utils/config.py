@@ -20,8 +20,8 @@ __all__ = ["Config", "pretty_text"]
 
 
 BASE_KEY = "_base_"
-# BASE_CONFIG = {"OUTPUT_DIR": "./workspace", "SESSION": "base", "LOG_FILE": "log.txt"}
-BASE_CONFIG = {}
+BASE_CONFIG = {"OUTPUT_DIR": "./workspace", "SESSION": "base", "LOG_FILE": "log.txt"}
+# BASE_CONFIG = {}
 
 cfg = None
 
@@ -95,8 +95,10 @@ class Config(object):
         args = parser.parse_args()
 
         cfg = EasyDict(BASE_CONFIG)
+        print("CONFIG FILE",args.config_file)
         if osp.isfile(args.config_file):
             cfg_from_file = cls.from_file(args.config_file)
+            print("cfg_from_file",cfg_from_file)
             cfg = merge_a_into_b(cfg_from_file, cfg)
         cfg = cls.merge_list(cfg, args.opts)
         cfg = eval_dict_leaf(cfg)

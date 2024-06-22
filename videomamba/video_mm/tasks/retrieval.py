@@ -11,7 +11,7 @@ import torch.backends.cudnn as cudnn
 import torch.distributed as dist
 import wandb
 
-from dataset import MetaLoader
+from dataset.dataloader import MetaLoader
 from models import *
 from tasks.pretrain import setup_dataloaders
 from tasks.retrieval_utils import evaluation_wrapper
@@ -275,6 +275,23 @@ def eval_after_training(train_config):
 
 
 if __name__ == "__main__":
+    '''
+    torchrun \
+        --nnodes=1 \
+        --nproc_per_node=1 \
+        --rdzv_backend=c10d \
+        --rdzv_endpoint=localhost:10054 \
+        tasks/retrieval.py \
+        exp_zs/msrvtt/config.py \
+        output_dir $OUTPUT_DIR\
+        evaluate False \
+        pretrained_path ../../weights/videomamba_m16_5M_f8_res224.pth
+        # zero_shot True \
+
+
+    '''
+    import os
+    print(os.getcwd())
     cfg = setup_main()
     main(cfg)
     if not cfg.evaluate:

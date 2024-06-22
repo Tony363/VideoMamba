@@ -8,9 +8,9 @@ export PYTHONPATH=${PYTHONPATH}:.
 echo "PYTHONPATH: ${PYTHONPATH}"
 
 JOB_NAME='m16_5m'
-OUTPUT_DIR="$(dirname $0)/$JOB_NAME"
-LOG_DIR="$(dirname $0)/logs/${JOB_NAME}"
-PARTITION='video5'
+OUTPUT_DIR="exp_zs/msrvtt/$JOB_NAME"
+LOG_DIR="exp_zs/msrvtt/logs/${JOB_NAME}"
+PARTITION='LocalQ' #'video5'
 NNODE=1
 NUM_GPUS=1
 NUM_CPU=1
@@ -26,8 +26,10 @@ srun -p ${PARTITION} \
     --nproc_per_node=${NUM_GPUS} \
     --rdzv_backend=c10d \
     tasks/retrieval.py \
-    $(dirname $0)/config.py \
+    exp_zs/msrvtt/config.py \
     output_dir ${OUTPUT_DIR} \
     evaluate True \
-    pretrained_path your_model_path/videomamba_m16_25M_f8_res224.pth
+    zero_shot True \
+    pretrained_path /home/tony/videomamba_m16_5M_f8_res224.pth #your_model_path/videomamba_m16_25M_f8_res224.pth     evaluate True \
+
 

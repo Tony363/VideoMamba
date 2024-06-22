@@ -10,4 +10,4 @@ echo ${MASTER_NODE}
 echo "Args:"
 echo $@
 
-torchrun --rdzv_endpoint=${MASTER_NODE}:10054 $@
+torchrun --rdzv_endpoint=localhost:10054 $@ #${MASTER_NODE}:10054 $@
