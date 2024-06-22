@@ -6,13 +6,13 @@ del available_corpus
 
 train_file = [
     f"{anno_root_downstream}/msrvtt_ret_train9k.json",
-    "your_msrvtt_path/MSRVTT_Videos",
+    "/home/tony/MSRVTT",
     "video",
 ]
 test_file = dict(
     test=[
         f"{anno_root_downstream}/msrvtt_ret_test1k.json",
-         "your_msrvtt_path/MSRVTT_Videos",
+         "/home/tony/MSRVTT",
         "video",
     ],
 )
@@ -71,7 +71,7 @@ model = dict(
         clip_norm_type='l2',
         clip_return_layer=1,
         clip_student_return_interval=1,
-        pretrained="your_model_path/videomamba_m16_k400_mask_pt_f8_res224.pth",
+        pretrained="/home/tony/VideoMamba/weights/videomamba_m16_k400_mask_pt_f8_res224.pth",
         # clip teacher
         clip_teacher="none",
         clip_img_size=224,
@@ -133,7 +133,7 @@ gradient_checkpointing = True
 # ========================= wandb ==========================
 wandb = dict(
     enable=False,
-    entity="likunchang",  # username or team name to store the runs, see https://docs.wandb.ai/ref/python/init
+    entity="pysolver33",#"likunchang",  # username or team name to store the runs, see https://docs.wandb.ai/ref/python/init
     project="umt_videomamba",  # setup in your command line
 )
 dist_url = "env://"
@@ -143,7 +143,7 @@ mode = "pt"
 # ========================= others ==========================
 output_dir = None  # output dir
 resume = False  # if True, load optimizer and scheduler states as well
-debug = False
+debug = False 
 log_freq = 1
 seed = 42
 

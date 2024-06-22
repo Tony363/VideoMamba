@@ -176,12 +176,12 @@
   "save_latest": true,
   "auto_resume": true,
   "pretrained_path": "/home/tony/VideoMamba/weights/videomamba_m16_5M_f8_res224.pth",
+  "OUTPUT_DIR": "./workspace",
+  "SESSION": "base",
+  "LOG_FILE": "log.txt",
   "rank": 0,
   "world_size": 1,
   "gpu": 0,
   "distributed": true,
-  "dist_backend": "nccl",
-  "OUTPUT_DIR": "./workspace",
-  "SESSION": "base",
-  "LOG_FILE": "log.txt"
+  "dist_backend": "nccl"
 }

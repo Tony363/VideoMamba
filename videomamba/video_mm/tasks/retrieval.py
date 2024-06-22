@@ -130,7 +130,7 @@ def main(config):
     num_steps_per_epoch = sum(len(d) for d in train_loaders)
     config.scheduler.num_training_steps = num_steps_per_epoch * config.scheduler.epochs
     config.scheduler.num_warmup_steps = num_steps_per_epoch * config.scheduler.warmup_epochs
-
+    print("WTF")
     model_cls = eval(config.model.get('model_cls', 'UMT'))
     (
         model,
@@ -282,12 +282,13 @@ if __name__ == "__main__":
         --rdzv_backend=c10d \
         --rdzv_endpoint=localhost:10054 \
         tasks/retrieval.py \
-        exp_zs/msrvtt/config.py \
+        exp_zs/msrvtt/m16_5m/config_cp.json \
         output_dir $OUTPUT_DIR\
-        evaluate False \
-        pretrained_path ../../weights/videomamba_m16_5M_f8_res224.pth
-        # zero_shot True \
+        evaluate True \
+        zero_shot True \
+        pretrained_path /home/tony/VideoMamba/weights/videomamba_m16_5M_f8_res224.pth
 
+        # exp_zs/msrvtt/config.py \
 
     '''
     import os
